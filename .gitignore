@@ -1,0 +1,10 @@
+markitdown/
+__pycache__/
+*.pyc
+*.pyo
+.env
+dist/
+build/
+*.spec
+venv/
+.venv/
