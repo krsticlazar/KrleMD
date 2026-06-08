@@ -57,6 +57,7 @@ else:
 
 class KrleMDApp(BaseWindow):
     def __init__(self):
+        ctk.set_appearance_mode("Dark")
         super().__init__()
 
         self.title("KrleMD")
@@ -77,6 +78,7 @@ class KrleMDApp(BaseWindow):
         self.output_dir: str | None = None
         self.last_output_path: str | None = None
         self.is_converting = False
+        self.theme_var = tk.IntVar(value=1)
 
         self.grid_columnconfigure(0, weight=1)
         self.grid_rowconfigure(1, weight=1)
@@ -94,6 +96,7 @@ class KrleMDApp(BaseWindow):
         header = ctk.CTkFrame(self, fg_color="transparent")
         header.grid(row=0, column=0, sticky="ew", padx=28, pady=(24, 10))
         header.grid_columnconfigure(0, weight=1)
+        header.grid_columnconfigure(1, weight=0)
 
         title = ctk.CTkLabel(header, text="KrleMD", font=self.title_font, anchor="w")
         title.grid(row=0, column=0, sticky="w")
@@ -106,6 +109,29 @@ class KrleMDApp(BaseWindow):
             anchor="w",
         )
         subtitle.grid(row=1, column=0, sticky="w", pady=(2, 0))
+
+        theme_frame = ctk.CTkFrame(header, fg_color="transparent")
+        theme_frame.grid(row=0, column=1, rowspan=2, sticky="e")
+        theme_frame.grid_columnconfigure((0, 1, 2), weight=0)
+
+        light_label = ctk.CTkLabel(theme_frame, text="Light", font=self.small_font, text_color=("gray35", "gray70"))
+        light_label.grid(row=0, column=0, padx=(0, 8))
+
+        self.theme_switch = ctk.CTkSwitch(
+            theme_frame,
+            text="",
+            width=48,
+            variable=self.theme_var,
+            onvalue=1,
+            offvalue=0,
+            command=self.toggle_appearance_mode,
+            font=self.small_font,
+        )
+        self.theme_switch.grid(row=0, column=1)
+        self.theme_switch.select()
+
+        dark_label = ctk.CTkLabel(theme_frame, text="Dark", font=self.small_font, text_color=("gray35", "gray70"))
+        dark_label.grid(row=0, column=2, padx=(8, 0))
 
     def _build_content(self) -> None:
         content = ctk.CTkFrame(self, fg_color="transparent")
@@ -296,6 +322,10 @@ class KrleMDApp(BaseWindow):
     def open_last_output(self) -> None:
         if self.last_output_path:
             open_file_in_explorer(self.last_output_path)
+
+    def toggle_appearance_mode(self) -> None:
+        mode = "Dark" if self.theme_var.get() else "Light"
+        ctk.set_appearance_mode(mode)
 
     def _set_converting_state(self) -> None:
         self.convert_button.configure(text="Converting...", state="disabled")

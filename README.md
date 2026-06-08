@@ -1,16 +1,20 @@
 # KrleMD
-
 A Windows 11 GUI for converting files to Markdown.
+
+<img src="assets/icon.png" alt="KrleMD logo" width="180">
+
+
 
 ## Screenshot
 
-Screenshot coming soon.
+<img src="assets/screenshot.png" alt="KrleMD dark mode screenshot" width="720">
 
 ## Features
 
 - Drag and drop support when `tkinterdnd2` is available
 - Browse-based file selection fallback
 - Windows 11 native look with CustomTkinter
+- Light and dark appearance modes, with dark mode enabled by default
 - Converts PDF, DOCX, PPTX, XLSX, images, HTML, CSV, EPUB, ZIP, JSON, XML, and more
 - Saves Markdown output next to the input file by default
 - Optional custom output folder
@@ -64,9 +68,10 @@ python -m app.main
 
 1. Start the app with `python -m app.main`.
 2. Select a file with **Browse**, or drag it into the drop area if drag and drop is installed.
-3. Leave the output folder as **Same as input folder**, or choose another folder with **Browse**.
-4. Click **Convert to Markdown**.
-5. After conversion, click **Open** to reveal the converted `.md` file in Explorer.
+3. Use the **Light / Dark** switch if you want to change the appearance.
+4. Leave the output folder as **Same as input folder**, or choose another folder with **Browse**.
+5. Click **Convert to Markdown**.
+6. After conversion, click **Open** to reveal the converted `.md` file in Explorer.
 
 The output file uses the same base name as the input file with a `.md` extension. For example, `report.pdf` becomes `report.md`.
 
@@ -129,7 +134,9 @@ KrleMD/
 |   |-- converter.py
 |   `-- utils.py
 |-- assets/
-|   `-- icon.ico
+|   |-- icon.ico
+|   |-- icon.png
+|   `-- screenshot.png
 |-- .gitignore
 |-- README.md
 `-- requirements.txt

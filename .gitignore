@@ -8,3 +8,12 @@ build/
 *.spec
 venv/
 .venv/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.vscode/
+.idea/
+*.log
+*.tmp
+Thumbs.db
+.DS_Store
